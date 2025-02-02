@@ -1,7 +1,8 @@
 import React from "react";
 import "./styles.css";
+import { Link, Outlet } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({isLogged}) => {
   return (
     <>
       <nav>
@@ -9,10 +10,16 @@ const Navbar = () => {
           Git Explorer
         </a>
         <div className="link-cont">
-          <a href="##">Repos</a>
-          <a href="##">Users</a>
+          <Link to={"/"}>Repos</Link>
+          <Link to={"/users"}>Users</Link>
+          <Link to={"/search"}>search</Link>
+          <Link to={"/authProfile"}>Profile</Link>       
+          {!isLogged && (
+            <Link to={"/login"}>Login</Link>
+          )}
         </div>
       </nav>
+      <Outlet />
     </>
   );
 };

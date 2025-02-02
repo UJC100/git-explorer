@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 const RepoList = () => {
   //State management
@@ -30,17 +31,24 @@ const RepoList = () => {
 
             <span className="repo-lang-span">Language: {repo.language}</span>
             <div>
-              By: <button className="repo-owner">{repo.owner.login}</button>
+              By:{" "}
+              <Link
+                className="repo-owner"
+                to={`/users/user/${repo.owner.login}`}
+              >
+                {repo.owner.login}
+              </Link>
             </div>
 
-            <button>
-              <button>View Repo</button>
-            </button>
+            <Link to={`/repoDetails/${repo.name}/${repo.owner.login}`}>
+            <button>View Repo</button>
+            </Link>
           </div>
         ))
       ) : (
         <h1>Loading...</h1>
       )}
+      <Link to="/users">Go to home</Link>
     </div>
   );
 };
